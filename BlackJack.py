@@ -4,7 +4,7 @@ class PlayingCards():
   def __init__(self,Deck):
     self.Deck = Deck
 
-  def GetCard(self, num=1):
+  def DealCard(self, num=1):
     Card = self.Deck[0:num] 
     self.Deck = self.Deck[num:]
     return Card
@@ -12,11 +12,10 @@ class PlayingCards():
 class Player(PlayingCards):
   def __init__(self):
     super().__init__(random.sample(range(52),52))
-    self.Hand = self.GetCard(2)
-    # self.Hand = [9,51]
+    self.Hand = self.DealCard(2)
 
   def DrawCard(self):
-    self.Hand.append(self.GetCard()[0])
+    self.Hand.append(self.DealCard()[0])
 
   def ModHand(self):
     Temp = [(x+1) % 13 for x in self.Hand]# converts from 1-52 to 0-12
@@ -30,14 +29,12 @@ class Player(PlayingCards):
       Temp.append(-10)
     return sum(Temp)
 
-  def DisplayHand(self):
-    print(self.Hand)
+  def Bet(self):
+    Bet = int(input("how much do you want to bet"))
+    #need to make the bet actually do something
+    self.StartGame()
+  def StartGame(self):
+    pass
 
-P1 = Player()
-# print(P1.Hand)
-# print(P1.ModHand())
-# print(P1.FullHandTotal())
-# P1.DrawCard()
-# print(P1.Hand)
-# print(P1.ModHand())
-# print(P1.FullHandTotal())
+def InitiateBJ(member):
+  pass
