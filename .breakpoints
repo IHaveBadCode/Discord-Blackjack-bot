@@ -1,29 +1,11 @@
 {
   "files": {
-    "main.py": [
+    "BankMethods.py": [
       {
-        "id": "0bc40302-de8c-46f9-812a-0a085d68dfd9",
-        "line": 1,
-        "version": 4442,
-        "index": 0
-      },
-      {
-        "id": "c51d2243-40a3-4d1e-a5b7-74a14c02181b",
-        "line": 26,
-        "version": 4446,
-        "index": 558
-      },
-      {
-        "id": "ae86530b-bc2c-4792-8cab-cb41bb54f1c2",
-        "line": 27,
-        "version": 4446,
-        "index": 585
-      },
-      {
-        "id": "985b6e70-13be-4417-9ca5-6eb64a35c065",
-        "line": 48,
-        "version": 4446,
-        "index": 1133
+        "id": "131f703e-2360-4a56-ac4a-775c9a3a60c0",
+        "line": 25,
+        "version": 427,
+        "index": 471
       }
     ]
   }
