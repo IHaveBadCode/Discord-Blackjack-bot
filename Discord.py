@@ -1,4 +1,4 @@
-import BankMethods, BlackJack, time
+import BankMethods, BlackJack
 import os, discord
 from discord.ext import commands
 from discord_components import DiscordComponents, ComponentsBot, Button, SelectOption, Select
@@ -45,53 +45,68 @@ async def hello(ctx):
 
 
 class Embeds():
-  def __init__(self, ctx, title, desc, color, footer):
+  def __init__(self, ctx):
     self.embed = None
     self.msg = None
-    
     self.ctx = ctx
-    self.title = title
-    self.desc = desc
-    self.color = color
-    self.footer = footer
 
-    self.Author_Name = ctx.author.display_name
-    self.Author_Icon = ctx.author.avatar_url
 
   def Create(self):
-    self.embed=discord.Embed(
-      title=self.title, 
-      description=self.desc, 
-      color=self.color)
-      # color=discord.Color.blue())
-  
+    self.embed = discord.Embed()
     self.embed.set_author(
-      name = self.ctx.author.display_name, 
-      icon_url= self.Author_Icon)
+      name = f"{self.ctx.author.display_name}'s", 
+      icon_url = self.ctx.author.avatar_url,
+      url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
-    self.embed.add_field(name="You didn't respond in time.", value="The dealer is keeping your money to deal with your bullcrap", inline=False)
-    self.embed.add_field(name="Field 2 Title", value="It is inline with Field 3", inline=True)
-    self.embed.add_field(name="Field 3 Title", value="It is inline with Field 2", inline=True)
-    self.embed.set_footer(text=self.footer)
+  def SetDisplayName(self, name):
+    self.embed.set_author(
+      name = name,
+      icon_url = self.ctx.author.avatar_url,
+      url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+  
+  def AddField(self, name, value, inline=False):
+    self.embed.add_field(
+      name=name, 
+      value=value, 
+      inline=inline)
+
+  def RemoveField(self, index=0):
+    self.embed.remove_field(index=index)
+    
+  def SetFooter(self, footer):
+    self.embed.set_footer(text=footer)
+
+  def SetDesc(self, desc):
+    self.embed.description = desc
+  
+  def SetColor(self, color):
+    self.embed.color=color
     
   async def Send(self):
-    self.Create()
     self.msg = await self.ctx.send(embed=self.embed)
 
   async def CommitEdit(self):
-    self.Create()
     await self.msg.edit(embed=self.embed)
 
 
 @bot.command()
 async def embed(ctx):
-  embed = Embeds(ctx,"hello", "*You didn't respond in time.", discord.Color.blue(), "A=11/1 K/Q/J=10")
+  embed = Embeds(ctx)
+  embed.Create()
+  embed.AddField("Ha lol", "You poor af boi get good")
+  embed.AddField("Player Cards", "noob oyu got none", True)
+  embed.AddField("Dealer Cards", "boss man got entire deck", True)
+  embed.SetFooter("A=11/1  J/Q/K=10")
+  embed.SetColor(discord.Color.red())
   await embed.Send()
-  time.sleep(1)
-  embed.title = None
   await embed.CommitEdit()
+  # embed.RemoveField()
+  # await embed.Send()
+  # time.sleep(1)
+  # embed.title = None
+  # await embed.CommitEdit()
 
-  
+  # color=discord.Color.blue())
 
 
 bot.run(os.environ['TOKEN'])
