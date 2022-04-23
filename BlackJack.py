@@ -1,21 +1,25 @@
 import random
 
 class PlayingCards():
-  def __init__(self,Deck):
-    self.Deck = Deck
+  def __init__(self, deck):
+    self.Deck = deck
 
   def DealCard(self, num=1):
+    # print(self.Deck)
     Card = self.Deck[0:num] 
     self.Deck = self.Deck[num:]
+    print(self.Deck)
     return Card
 
-class Player(PlayingCards):
-  def __init__(self):
-    super().__init__(random.sample(range(52),52))
-    self.Hand = self.DealCard(2)
+class Player():
+  def __init__(self, AllCards):
+    # PlayingCards.__init__(self, AllCards.Deck)
+    self.AllCards=AllCards
+    self.Hand = AllCards.DealCard(2)
+    pass
 
   def DrawCard(self):
-    self.Hand.append(self.DealCard()[0])
+    self.Hand.append(self.AllCards.DealCard()[0])
 
   def ModHand(self):
     Temp = [(x+1) % 13 for x in self.Hand]# converts from 1-52 to 0-12
@@ -37,4 +41,8 @@ class Player(PlayingCards):
     pass
 
 def InitiateBJ(member):
-  pass
+  AllCards = PlayingCards(random.sample(range(0,52), 52))
+  P1 = Player(AllCards)
+  P2 = Player(AllCards)
+
+  
