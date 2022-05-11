@@ -8,6 +8,10 @@ authors = ["Joshua_HG <<>>"]
 python = "^3.8"
 discord = "^1.7.3"
 discord-components = "^2.1.2"
+"discord.py" = "^1.7.3"
+Flask = "^2.1.2"
+discord-ui = "^5.1.6"
+"discord.pyc" = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 

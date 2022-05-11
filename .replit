@@ -1,2 +1,2 @@
 language = "python3"
-entrypoint = "Discord.py"
+entrypoint = "Main.py"

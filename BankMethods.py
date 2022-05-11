@@ -1,16 +1,17 @@
 import json
 
 def get_wallet(member) -> int:
+  print(member)
   file = open(f"Banks/{member.guild}.json")
   data = json.load(file)
-  wallet = data[member.id]["wallet"]
+  wallet = data[f"{member.author.id}"]["wallet"]
   file.close()
   return wallet
 
 def update_wallet(member, money) -> None:
   file = open(f"Banks/{member.guild}.json", "r+")
   data = json.load(file)
-  data[member.id]["wallet"] += money
+  data[f"{member.author.id}"]["wallet"] += money
   file.seek(0)
   json.dump(data, file)
   file.truncate() 
@@ -19,7 +20,7 @@ def update_wallet(member, money) -> None:
 def set_wallet(member, money) -> None:
   file = open(f"Banks/{member.guild}.json", "r+")
   data = json.load(file)
-  data[member.id]["wallet"] = money
+  data[member.author.id]["wallet"] = money
   file.seek(0)
   json.dump(data, file)
   file.truncate()  
