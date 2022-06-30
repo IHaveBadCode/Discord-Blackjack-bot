@@ -1,4 +1,5 @@
-import BankMethods, Blackjack
+from Casino import SnakeEyes, Blackjack
+import BankMethods
 import os, discord
 from KeepAlive import keep_alive
 from discord.ext import commands
@@ -39,6 +40,11 @@ async def BJ(ctx, bet=0):
       await ctx.reply("You cant bet less that **100 coins**, smh")
   except ValueError:
     await ctx.reply("smh. You need to bet something, seems like common sense tbh.")
-    
-keep_alive()
+
+@bot.command(name="Snakeeyes")
+async def SE(ctx, bet=0):
+  await SnakeEyes.Start(bot, ctx, bet)
+
+
+# keep_alive()
 bot.run(os.environ['TOKEN'])

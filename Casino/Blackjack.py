@@ -1,15 +1,10 @@
 import random, discord, Methods, BankMethods
+import Componants.BJ as BJ
 from threading import Thread
 # https://discordpy.readthedocs.io/en/latest/interactions/api.html?highlight=compo#button
 # 🎰   🎁   🍺   ✨   💰   🍀
 
-#dic:U+1F3B2 
-#1:U+2680 
-#2:U+2681 
-#3:U+2682 
-#4:U+2683 
-#5:U+2684 
-#6:U+2685
+
 
 
 class PlayingCards():
@@ -97,40 +92,41 @@ async def Start(bot, ctx, bet):
   dealer = Player(ctx, AllCards, 0)
   player = Player(ctx, AllCards, 0, dealer, embed)
 
-  class Buttons(discord.ui.View):
-      def __init__(self, *, timeout=180):
-          super().__init__(timeout=timeout)
-      @discord.ui.button(label="Hit",style=discord.ButtonStyle.green, row=0)
-      async def Hit_button(self, button:discord.ui.Button, interaction:discord.Interaction):
-        await player.DrawCard()
-      @discord.ui.button(label="Stand",style=discord.ButtonStyle.green, row=0)
-      async def Stand_button(self, button:discord.ui.Button, interaction:discord.Interaction):
-        self.DisableAllButtons()
-        await player.Stand()
-      @discord.ui.button(label="Forefit", style=discord.ButtonStyle.red, row=0)
-      async def Forefit_button(self, button:discord.ui.Button, interaction:discord.Interaction):
-        self.DisableAllButtons()
-        await player.Forefit()
-      @discord.ui.button(label="DoubleDown",style=discord.ButtonStyle.blurple, row=1)
-      async def DoubleDown_button(self, button:discord.ui.Button, interaction:discord.Interaction):
-        player.DoubleDown()
-      @discord.ui.button(label="SplitHands",style=discord.ButtonStyle.blurple, row=1)
-      async def SplitHand_button(self, button:discord.ui.Button, interaction:discord.Interaction):
-        player.SplitHands()
-      @discord.ui.button(label="Insurance",style=discord.ButtonStyle.blurple, row=1)
-      async def Insurance_button(self, button:discord.ui.Button, interaction:discord.Interaction):
-        player.Insurance() 
+  # class Buttons(discord.ui.View):
+  #     def __init__(self, *, timeout=180):
+  #         super().__init__(timeout=timeout)
+  #     @discord.ui.button(label="Hit",style=discord.ButtonStyle.green, row=0)
+  #     async def Hit_button(self, button:discord.ui.Button, interaction:discord.Interaction):
+  #       await player.DrawCard()
+  #     @discord.ui.button(label="Stand",style=discord.ButtonStyle.green, row=0)
+  #     async def Stand_button(self, button:discord.ui.Button, interaction:discord.Interaction):
+  #       self.DisableAllButtons()
+  #       await player.Stand()
+  #     @discord.ui.button(label="Forefit", style=discord.ButtonStyle.red, row=0)
+  #     async def Forefit_button(self, button:discord.ui.Button, interaction:discord.Interaction):
+  #       self.DisableAllButtons()
+  #       await player.Forefit()
+  #     @discord.ui.button(label="DoubleDown",style=discord.ButtonStyle.blurple, row=1)
+  #     async def DoubleDown_button(self, button:discord.ui.Button, interaction:discord.Interaction):
+  #       player.DoubleDown()
+  #     @discord.ui.button(label="SplitHands",style=discord.ButtonStyle.blurple, row=1)
+  #     async def SplitHand_button(self, button:discord.ui.Button, interaction:discord.Interaction):
+  #       player.SplitHands()
+  #     @discord.ui.button(label="Insurance",style=discord.ButtonStyle.blurple, row=1)
+  #     async def Insurance_button(self, button:discord.ui.Button, interaction:discord.Interaction):
+  #       player.Insurance() 
         
-      def DisableButton(self, label, state):
-        for child in self.children:
-          if child.label==label:
-            child.disabled=state
+  #     def DisableButton(self, label, state):
+  #       for child in self.children:
+  #         if child.label==label:
+  #           child.disabled=state
             
-      def DisableAllButtons(self):
-        for child in self.children:
-          child.disabled=True
+  #     def DisableAllButtons(self):
+  #       for child in self.children:
+  #         child.disabled=True
   
-  veiw=Buttons()
+  
+  veiw=BJ.Buttons()
   embed.Create()
   embed.DisplayNameSet(f"{ctx.author.name}'s Blackjack game")
   embed.FieldAdd(f"{ctx.author.name} (Player)", f"Cards - {player.PrettyCards()} \n Total - {player.HandTotal()}")

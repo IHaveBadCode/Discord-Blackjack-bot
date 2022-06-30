@@ -16,7 +16,7 @@ class Embeds():
     self.embed.set_author(
       name = f"hello",
       # name = f"{self.ctx.author.display_name}'s", 
-      # icon_url = self.ctx.author.avatar_url,
+      icon_url = self.ctx.author.avatar,
       url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
   def DisplayNameSet(self, name):
@@ -56,7 +56,7 @@ class Embeds():
   def ColorSet(self, color):
     self.embed.color=color  
     
-  async def Send(self, Buttons):
+  async def Send(self, Buttons= None):
     self.msg = await self.ctx.send(embed=self.embed, view=Buttons)
 
   async def CommitEdit(self):
